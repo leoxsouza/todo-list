@@ -1,0 +1,15 @@
+{
+  "name": "desafio_todo",
+  "version": "1.0.0",
+  "description": "Desafio todolist",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Leonardo Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}

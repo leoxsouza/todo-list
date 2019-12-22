@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+  h1 #{todo}
+  h1 Novo TODO: !{todo}
+  form(method="post" id="addTodo")
+      input.form-control(type='text', placeholder='Adicione uma nova tarefa!', name='todo')
+      input.btn.btn-primary.btn-lg.active(type="submit", value="Save")
+  script.
+    $(document).ready(function () {
+    $("form#addTodo").on('submit', function (e) {
+      e.preventDefault();
+      var data = $('input[name=todo]').val();
+      $.ajax({
+        type: 'post',
+        url: '/todos/add',
+        data: {
+          todo: data
+        },
+        dataType: 'text',
+        success: function(data){
+              window.location.href = '/';
+           }
+      })
+    });
+    });

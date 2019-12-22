@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+  h1 #{title}
+  ul.list-group
+    each todo, i in todos
+      li.list-group-item.text-uppercase
+        input(name="todo" value=todo.descricao hidden)
+        = todo.descricao
+        span                      
+        button.btn.btn-danger(name="excluir" id=todo.descricao value=todo.id) Excluir
+  script.
+
+  script.
+    $(document).ready(function () {
+    $("button").click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'delete',
+        url: '/todos/' + this.id,
+        dataType: 'text',
+        success: function(data){
+            window.location.href = '/';
+          }
+      })
+    });
+    });
